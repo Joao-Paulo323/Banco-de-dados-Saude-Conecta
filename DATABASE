@@ -34,6 +34,15 @@ Number VARCHAR (20),
 complement  VARCHAR (100)
 );
 
+CREATE TABLE avaibleslots (
+slotid INT PRIMARY KEY AUTO_INCREMENT,
+doctorid INT,
+dayofweek VARCHAR (15),
+starttime TIME,
+endtime TIME,
+FOREIGN KEY (doctorid) REFERENCES doctor (doctorid)
+);
+
 CREATE TABLE APPOINTMENT (
 appointmentID INT PRIMARY KEY AUTO_INCREMENT,
 patientID INT,
