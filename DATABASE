@@ -131,4 +131,4 @@ FOREIGN KEY (patientid) REFERENCES patient(patientid),
 FOREIGN KEY (doctorid) REFERENCES doctor(doctorid)
 ); 
 
-RENAME TABLE paymentid to payment
+
