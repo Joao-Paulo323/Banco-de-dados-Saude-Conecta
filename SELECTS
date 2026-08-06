@@ -1,3 +1,6 @@
+1. Busca Múltipla: Liste o nome do paciente, a data da consulta, o nome do médico e a
+especialidade, apenas para consultas realizadas no ano atual.
+
 SELECT PATIENTNAME AS 'Nome do paciente', DoctorName AS 'Nome do medico',
 appointmentdate AS 'Data da consulta', specialty AS 'Especialidade'
 
