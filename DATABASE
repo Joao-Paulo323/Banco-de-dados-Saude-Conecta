@@ -131,4 +131,8 @@ FOREIGN KEY (patientid) REFERENCES patient(patientid),
 FOREIGN KEY (doctorid) REFERENCES doctor(doctorid)
 ); 
 
+ALTER TABLE Patient 
+ADD CONSTRAINT UnqP UNIQUE (CPF,email,phone);
 
+ALTER TABLE DOCTOR 
+ADD CONSTRAINT UnqD UNIQUE (PHONE)
