@@ -1,0 +1,15 @@
+SELECT PATIENTNAME AS 'Nome do paciente', DoctorName AS 'Nome do medico',
+appointmentdate AS 'Data da consulta', specialty AS 'Especialidade'
+
+FROM Patient 
+JOIN appointment ON  appointment.patientid = patient.patientid
+JOIN doctor ON appointment.doctorid = doctor.doctorid
+
+WHERE YEAR (appointment.appointmentdate) = 2026;
+
+
+
+
+
+
+
