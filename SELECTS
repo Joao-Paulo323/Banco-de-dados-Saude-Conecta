@@ -1,5 +1,5 @@
-1. Busca Múltipla: Liste o nome do paciente, a data da consulta, o nome do médico e a
-especialidade, apenas para consultas realizadas no ano atual.
+/* 1. Busca Múltipla: Liste o nome do paciente, a data da consulta, o nome do médico e a
+especialidade, apenas para consultas realizadas no ano atual. */
 
 SELECT PATIENTNAME AS 'Nome do paciente', DoctorName AS 'Nome do medico',
 appointmentdate AS 'Data da consulta', specialty AS 'Especialidade'
@@ -10,8 +10,18 @@ JOIN doctor ON appointment.doctorid = doctor.doctorid
 
 WHERE YEAR (appointment.appointmentdate) = 2026;
 
+/*2. Agregação: Qual é o total de receita (valor das consultas) gerado por cada especialidade
+médica? Ordene da maior para a menor. */
 
+SELECT SUM(totalamount) AS 'Receita Total', doctorname AS 'Nome do Medico', specialty AS 'Especialidade' 
+FROM doctor
+JOIN appointment ON doctor.doctorid = appointment.doctorid
+JOIN Invoice ON appointment.appointmentid = invoice.appointmentid
+GROUP BY doctor.specialty
+ORDER BY invoice.totalamount DESC;
 
+/* 3. Left Join: Mostre o nome de todos os médicos e, caso tenham consultas agendadas, mostre
+a data. Médicos sem consultas também devem aparecer na lista. */
 
 
 
