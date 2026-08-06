@@ -1588,4 +1588,6 @@ ELT(((doctorid-1)%4)+1,'12:00:00','15:00:00','17:00:00','11:00:00')
 FROM doctor
 WHERE doctorid BETWEEN 21 AND 120;
 
-RENAME TABLE paymentid to payment
+RENAME TABLE paymentid TO payment;
+RENAME TABLE prescription_item TO prescriptionitem;
+ALTER TABLE appointment CHANGE appoitmentdate appointmentdate DATETIME;
