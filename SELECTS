@@ -23,6 +23,9 @@ ORDER BY invoice.totalamount DESC;
 /* 3. Left Join: Mostre o nome de todos os médicos e, caso tenham consultas agendadas, mostre
 a data. Médicos sem consultas também devem aparecer na lista. */
 
+SELECT Doctorname AS 'Nome do Medico', appointmentdate AS 'Data da Consulta'
+FROM Doctor 
+LEFT JOIN appointment ON Doctor.doctorid = appointment.doctorid
 
 
 
