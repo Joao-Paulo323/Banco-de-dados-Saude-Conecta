@@ -1,5 +1,6 @@
 CREATE DATABASE SAUDECONECTA;
 
+
 USE SAUDECONECTA;
 
 CREATE TABLE  Patient (
@@ -28,11 +29,11 @@ Strenght VARCHAR (20)
 
 CREATE TABLE avaibleslots (
 slotid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-doctorid INT,
+doctorid INT UNSIGNED,
 dayofweek VARCHAR (15),
 starttime TIME,
 endtime TIME,
-FOREIGN KEY (doctorid) REFERENCES doctor (doctorid)
+FOREIGN KEY (doctorID) REFERENCES doctor (DoctorID)
 );
 
 CREATE TABLE ADDRESS (
@@ -43,10 +44,11 @@ Number VARCHAR (20),
 complement  VARCHAR (100)
 );
 
+
 CREATE TABLE APPOINTMENT (
 appointmentID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-patientID INT,
-DoctorID INT,
+patientID INT UNSIGNED,
+DoctorID INT UNSIGNED,
 appoitmentdate DATETIME,
 status VARCHAR (20),
 notes TEXT,
@@ -56,7 +58,7 @@ FOREIGN KEY (doctorID) REFERENCES doctor (doctorid)
 
 CREATE TABLE EXAM (
 examID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-appointmentID INT,
+appointmentID INT UNSIGNED,
 examname VARCHAR (120),
 RequestDate DATETIME,
 FOREIGN KEY (appointmentID) REFERENCES appointment (appointmentID)
@@ -64,7 +66,7 @@ FOREIGN KEY (appointmentID) REFERENCES appointment (appointmentID)
 
 CREATE TABLE ExamResult (
 ExamResultID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-EXAMID INT,
+EXAMID INT UNSIGNED,
 value VARCHAR (100),
 RESULT TEXT,
 resultDATE DATETIME,
@@ -73,8 +75,8 @@ FOREIGN KEY (EXAMID) REFERENCES EXAM (EXAMID)
 
 CREATE TABLE SCHEDULE (
 scheduleID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-doctorID INT,
-PATIENTID INT,
+doctorID INT UNSIGNED,
+PATIENTID INT UNSIGNED,
 scheduledate DATETIME ,
 FOREIGN KEY (doctorid) REFERENCES doctor (doctorid),
 FOREIGN KEY (patientid) REFERENCES patient (patientid)
@@ -82,7 +84,7 @@ FOREIGN KEY (patientid) REFERENCES patient (patientid)
 
 CREATE TABLE INVOICE (
 InvoiceID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-appointmentid INT, 
+appointmentid INT UNSIGNED, 
 totalamount DECIMAL (10,2),
 issueTIME DATETIME,
 status VARCHAR (20),
@@ -91,7 +93,7 @@ FOREIGN KEY (appointmentID) REFERENCES appointment (appointmentid)
 
 CREATE TABLE Paymentid (
 paymentid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-invoiceID INT,
+invoiceID INT UNSIGNED,
 paidamount DECIMAL (10,2),
 paymentmethod VARCHAR (30),
 paymentdate DATETIME,
@@ -100,22 +102,24 @@ FOREIGN KEY (invoiceid) REFERENCES INVOICE (INVOICEID)
 );
 
 CREATE TABLE Prescription (
-prescriptionid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-appointmentid INT,
-doctorid INT,
-issuedate DATETIME,
-notes TEXT,
-validuntil DATE,
-status VARCHAR(20),
-FOREIGN KEY (appointmentid) REFERENCES appointment(appointmentid),
-FOREIGN KEY (doctorid) REFERENCES doctor(doctorid)
+    prescriptionid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    appointmentid INT UNSIGNED,
+    doctorid INT UNSIGNED,
+    issuedate DATETIME,
+    notes TEXT,
+    validuntil DATE,
+    status VARCHAR(20),
+    FOREIGN KEY (appointmentid)
+        REFERENCES appointment (appointmentid),
+    FOREIGN KEY (doctorid)
+        REFERENCES doctor (doctorid)
 );
 CREATE TABLE Prescription_item ( 
 prescriptionitemid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-medicationid INT,
-prescriptionid INT, 
-appointmentid INT,
-doctorid INT, 
+medicationid INT UNSIGNED,
+prescriptionid INT UNSIGNED, 
+appointmentid INT UNSIGNED,
+doctorid INT UNSIGNED, 
 issuedate DATETIME,
 notes TEXT,
 valid_until DATE,
@@ -125,12 +129,15 @@ FOREIGN KEY (prescriptionid) REFERENCES prescription(prescriptionid)
 );
 CREATE TABLE contact (
 contactid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-patientid INT,
-doctorid INT,
+patientid INT UNSIGNED,
+doctorid INT UNSIGNED,
 FOREIGN KEY (patientid) REFERENCES patient(patientid),
 FOREIGN KEY (doctorid) REFERENCES doctor(doctorid)
 ); 
 
 ALTER TABLE DOCTOR ADD CONSTRAINT UNQD UNIQUE (CRM);
 ALTER TABLE PATIENT ADD CONSTRAINT UNQP UNIQUE (CPF,EMAIL);
+
+
+
 
