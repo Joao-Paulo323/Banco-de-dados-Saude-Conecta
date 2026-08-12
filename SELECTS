@@ -13,12 +13,12 @@ WHERE YEAR (appointment.appointmentdate) = 2026;
 /*2. Agregação: Qual é o total de receita (valor das consultas) gerado por cada especialidade
 médica? Ordene da maior para a menor. */
 
-SELECT SUM(totalamount) AS 'Receita Total', doctorname AS 'Nome do Medico', specialty AS 'Especialidade' 
+SELECT SUM(totalamount) AS 'Receita Total', specialty AS 'Especialidade' 
 FROM doctor
 JOIN appointment ON doctor.doctorid = appointment.doctorid
 JOIN Invoice ON appointment.appointmentid = invoice.appointmentid
 GROUP BY doctor.specialty
-ORDER BY invoice.totalamount DESC;
+ORDER BY SUM(invoice.totalamount) DESC;
 
 /* 3. Left Join: Mostre o nome de todos os médicos e, caso tenham consultas agendadas, mostre
 a data. Médicos sem consultas também devem aparecer na lista. */
